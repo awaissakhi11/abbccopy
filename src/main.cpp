@@ -2544,10 +2544,10 @@ bool LoadBlockIndex(bool fAllowNew)
 
     if (fTestNet)
     {
-        pchMessageStart[0] = 0x71;
-        pchMessageStart[1] = 0xb3;
-        pchMessageStart[2] = 0x26;
-        pchMessageStart[3] = 0xa3;
+        pchMessageStart[0] = 0x03;
+        pchMessageStart[1] = 0x81;
+        pchMessageStart[2] = 0x1e;
+        pchMessageStart[3] = 0x38;
 
         bnTrustedModulus.SetHex("f0d14ff2623dacfe738d0892b599be7731052239cddd95a3f25101c801dc990453b38c9434efe3f372db39a32c2bb44cbaea72d62c8931fa785b0ec44531308df3e46069be5573e49bb29f4d479bfc3d162f57a5965db03810be7636da265bfced9c01a6b0296c77910ebdc8016f70174f0f18a57b3b971ac43a934c6aedbc5c866764a3622b5b7e3f9832b8b3f133c849dbcc0396588abcd1e41048555746e4823fb8aba5b3d23692c6857fccce733d6bb6ec1d5ea0afafecea14a0f6f798b6b27f77dc989c557795cc39a0940ef6bb29a7fc84135193a55bcfc2f01dd73efad1b69f45a55198bd0e6bef4d338e452f6a420f1ae2b1167b923f76633ab6e55");
         bnProofOfWorkLimit = bnProofOfWorkLimitTestNet; // 16 bits PoW target limit for testnet
@@ -2580,9 +2580,9 @@ bool LoadBlockIndex(bool fAllowNew)
         if (!fAllowNew)
             return false;
 
-        const char* pszTimestamp = "Wednesday, 06-Dec-17 07:34:11 UTC";
+        const char* pszTimestamp = "ABBCCoinBlock-Chain Sunday 28/4-2019";
                 CTransaction txNew;
-                txNew.nTime = 1512545651;
+                txNew.nTime = 1556451414;
                 txNew.vin.resize(1);
                 txNew.vout.resize(1);
                 txNew.vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -2592,12 +2592,12 @@ bool LoadBlockIndex(bool fAllowNew)
                 block.hashPrevBlock = 0;
                 block.hashMerkleRoot = block.BuildMerkleTree();
                 block.nVersion = 1;
-                block.nTime    = 1512545651; //Friday, 24-Mar-17 02:44:04 UTC
+                block.nTime    = 1556451414; //Friday, 24-Mar-17 02:44:04 UTC
                 block.nBits    = bnProofOfWorkLimit.GetCompact();
-                block.nNonce   = 15792871;
+                block.nNonce   = 1064442;
                 if(fTestNet)
                 {
-                    block.nNonce   = 15792871;
+                    block.nNonce   = 1064442;
                 }
                 if (true  && (block.GetHash() != hashGenesisBlock)) {
 
@@ -2621,7 +2621,7 @@ bool LoadBlockIndex(bool fAllowNew)
                 printf("block.nNonce = %u \n", block.nNonce);
 
                 //// debug print
-                assert(block.hashMerkleRoot == uint256("0xc78c84a7c958ffe7da4987862989b6479f66da5ed9ef7944fe94833c1317a923"));
+                assert(block.hashMerkleRoot == uint256("0xd1be19b04a067ceb27cc1ba1c692f64b5965b86509149185182e9e8ace5cce68"));
                 block.print();
                 assert(block.GetHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
                 assert(block.CheckBlock());
@@ -2901,7 +2901,7 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0xDE, 0xD5, 0x86, 0x5F  };
+unsigned char pchMessageStart[4] = { 0x6A, 0x7A, 0xF7, 0xBB  };
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 {
